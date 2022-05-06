@@ -1,0 +1,35 @@
+{
+  "name": "lezer-debug",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/commands": "^0.20.0",
+    "@codemirror/lang-lezer": "^0.20.0",
+    "@codemirror/language": "^0.20.0",
+    "@codemirror/state": "^0.20.0",
+    "@codemirror/text": "^0.19.6",
+    "@codemirror/theme-one-dark": "^0.20.0",
+    "@codemirror/view": "^0.20.4",
+    "@lezer/common": "^0.16.0",
+    "@lezer/generator": "^0.16.0",
+    "@lezer/highlight": "^0.16.0",
+    "@vueuse/core": "^8.4.2",
+    "fp-ts": "^2.12.1",
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@unocss/preset-attributify": "^0.32.13",
+    "@unocss/preset-wind": "^0.32.13",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "typescript": "^4.5.4",
+    "unocss": "^0.32.13",
+    "vite": "^2.9.7",
+    "vue-tsc": "^0.34.7"
+  }
+}
