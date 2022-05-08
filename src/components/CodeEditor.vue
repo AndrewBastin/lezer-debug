@@ -14,6 +14,7 @@ import { tags as t } from "@lezer/highlight"
 const props = defineProps<{
   lang: (() => LanguageSupport) | null,
   modelValue: string
+  selection: null | [number, number]
 }>()
 
 const emit = defineEmits<{
@@ -35,6 +36,18 @@ watch(() => props.lang, (lang) => {
       )
     ]
   })
+})
+
+watch(() => props.selection, (selection) => {
+  if (selection) {
+    const [from, to] = selection
+    cm.value?.dispatch({
+      selection: {
+        anchor: from,
+        head: to
+      }
+    })
+  }
 })
 
 watch(() => props.modelValue, (val) => {

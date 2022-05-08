@@ -1,4 +1,5 @@
 import { Tree as LRTree, SyntaxNode, IterMode } from "@lezer/common"
+import { v4 as uuid } from "uuid"
 import * as Tr from "fp-ts/Tree"
 
 type InterimTree = {
@@ -7,6 +8,7 @@ type InterimTree = {
 }
 
 export type SyntaxTreeEntry = {
+  id: string
   name: string
   from: number
   to: number
@@ -19,7 +21,7 @@ export const lrTreeToSyntaxTree = (tree: LRTree) => {
   tree.iterate({
     enter({ name, from, to }) {
       stack.push({
-        entry: { name, from, to },
+        entry: { id: uuid(), name, from, to },
         children: [],
       })
     },

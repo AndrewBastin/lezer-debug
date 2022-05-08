@@ -38,6 +38,7 @@
         <CodeEditor 
           v-model="exampleText"
           :lang="grammarLangSupport"
+          :selection="exampleSelection"
         />
       </div>
 
@@ -48,14 +49,23 @@
         overflow="y-auto" 
         font="mono"
       >
-        <pre>{{ treeString }}</pre>
+        <span v-if="E.isLeft(exampleTree)">
+          Parser Error!
+        </span>
+
+        <SyntaxTree
+          v-else
+          :tree="exampleTree.right"
+          :text="exampleText"
+          @select="onSyntaxEntrySelect"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
+import { computed, ref } from "vue"
 import { refDebounced, useLocalStorage } from "@vueuse/core"
 import { lezer } from "@codemirror/lang-lezer"
 import * as E from "fp-ts/Either"
@@ -64,7 +74,8 @@ import { pipe, identity, flow } from "fp-ts/function"
 import { buildParser } from "@lezer/generator"
 import CodeEditor from "./components/CodeEditor.vue"
 import { LanguageSupport, LRLanguage } from "@codemirror/language"
-import { lrTreeToSyntaxTree } from "./LRTree"
+import { lrTreeToSyntaxTree, SyntaxTreeEntry } from "./LRTree"
+import SyntaxTree from "./components/SyntaxTree.vue"
 
 const exampleText = useLocalStorage("text-example", "")
 
@@ -108,19 +119,11 @@ const exampleTree = computed(() => {
   )
 })
 
-const treeString = computed(() =>
-  pipe(
-    exampleTree.value,
-    E.map(flow(
-      Tr.map(
-        ({ from, to, name }) => 
-          `${name}: <${from}, ${to}>"${exampleText.value.substring(from, to).split("\n")[0]}"`
-      ),
-      Tr.drawTree
-    )),
-    E.getOrElse(() => "Parser Err")
-  )
-)
+const exampleSelection = ref<null | [number, number]>(null)
+
+const onSyntaxEntrySelect = ({from, to}: SyntaxTreeEntry) => {
+  exampleSelection.value = [from, to]
+}
 
 </script>
 

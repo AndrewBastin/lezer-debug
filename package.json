@@ -21,9 +21,11 @@
     "@lezer/highlight": "^0.16.0",
     "@vueuse/core": "^8.4.2",
     "fp-ts": "^2.12.1",
+    "uuid": "^8.3.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@types/uuid": "^8.3.4",
     "@unocss/preset-attributify": "^0.32.13",
     "@unocss/preset-wind": "^0.32.13",
     "@vitejs/plugin-vue": "^2.3.1",

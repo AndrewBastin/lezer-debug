@@ -12,6 +12,7 @@ specifiers:
   '@lezer/common': ^0.16.0
   '@lezer/generator': ^0.16.0
   '@lezer/highlight': ^0.16.0
+  '@types/uuid': ^8.3.4
   '@unocss/preset-attributify': ^0.32.13
   '@unocss/preset-wind': ^0.32.13
   '@vitejs/plugin-vue': ^2.3.1
@@ -19,6 +20,7 @@ specifiers:
   fp-ts: ^2.12.1
   typescript: ^4.5.4
   unocss: ^0.32.13
+  uuid: ^8.3.2
   vite: ^2.9.7
   vue: ^3.2.25
   vue-tsc: ^0.34.7
@@ -37,9 +39,11 @@ dependencies:
   '@lezer/highlight': 0.16.0
   '@vueuse/core': 8.4.2_vue@3.2.33
   fp-ts: 2.12.1
+  uuid: 8.3.2
   vue: 3.2.33
 
 devDependencies:
+  '@types/uuid': 8.3.4
   '@unocss/preset-attributify': 0.32.13
   '@unocss/preset-wind': 0.32.13
   '@vitejs/plugin-vue': 2.3.2_vite@2.9.8+vue@3.2.33
@@ -235,6 +239,10 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: true
 
   /@unocss/cli/0.32.13:
@@ -1284,6 +1292,11 @@ packages:
       - supports-color
       - vite
     dev: true
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
 
   /vite/2.9.8:
     resolution: {integrity: sha512-zsBGwn5UT3YS0NLSJ7hnR54+vUKfgzMUh/Z9CxF1YKEBVIe213+63jrFLmZphgGI5zXwQCSmqIdbPuE8NJywPw==}
