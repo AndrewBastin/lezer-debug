@@ -25,6 +25,7 @@
       <CodeEditor 
         v-model="grammarText"
         :lang="lezer" 
+        :selection="null"
       />
     </div>
 
