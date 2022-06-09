@@ -6,16 +6,20 @@
 import { onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { EditorView, ViewPlugin, ViewUpdate } from "@codemirror/view"
 import { Compartment, EditorState } from "@codemirror/state"
-import { basicSetup } from "@codemirror/basic-setup"
+import { basicSetup } from "codemirror"
 import { oneDark } from "@codemirror/theme-one-dark"
 import { LanguageSupport } from "@codemirror/language"
 import { tags as t } from "@lezer/highlight"
 
-const props = defineProps<{
-  lang: (() => LanguageSupport) | null,
-  modelValue: string
-  selection: null | [number, number]
-}>()
+const props = withDefaults(
+  defineProps<{
+    lang: (() => LanguageSupport) | null,
+    modelValue: string
+    selection: null | [number, number]
+  }>(), {
+    selection: null
+  }
+)
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: string): void
