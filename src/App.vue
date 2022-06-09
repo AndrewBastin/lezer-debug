@@ -80,7 +80,7 @@
         <SyntaxTree
           v-else
           :tree="exampleTree.right"
-          :text="exampleText"
+          :text="exampleTextDebounced"
           @select="onSyntaxEntrySelect"
         />
       </div>
@@ -106,12 +106,17 @@ import { LanguageSupport, LRLanguage } from "@codemirror/language"
 import { lrTreeToSyntaxTree, SyntaxTreeEntry } from "./LRTree"
 import SyntaxTree from "./components/SyntaxTree.vue"
 
+const DEBOUNCE_TIME_PERIOD = 1000
+
 const exampleText = useLocalStorage("text-example", "")
-
 const grammarText = useLocalStorage("text-grammar", "")
-const debouncedGrammarText = refDebounced(grammarText, 1000)
-
 const tagJSONText = useLocalStorage("text-tags", "{}")
+
+const exampleTextDebounced = refDebounced(exampleText, DEBOUNCE_TIME_PERIOD)
+
+const grammarTextDebounced = refDebounced(grammarText, DEBOUNCE_TIME_PERIOD)
+
+const tagJSONTextDebounced = refDebounced(tagJSONText, DEBOUNCE_TIME_PERIOD)
 
 const getHighlightTag = (tagName: string) => pipe(
   tags,
@@ -121,7 +126,7 @@ const getHighlightTag = (tagName: string) => pipe(
 
 const highlightProps = computed(() =>
   pipe(
-    tagJSONText.value,
+    tagJSONTextDebounced.value,
     J.parse,
     E.mapLeft(() => "TAGS_INVALID_JSON" as const),
     E.filterOrElseW(
@@ -147,7 +152,7 @@ const grammarParser = computed(() =>
 
     E.bindW("parser", () =>
       E.tryCatch(
-        () => buildParser(debouncedGrammarText.value),
+        () => buildParser(grammarTextDebounced.value),
         (e) => e as Error
       )
     ),
@@ -174,12 +179,12 @@ const grammarLangSupport = computed(() =>
 )
 
 const exampleTree = computed(() => {
-  exampleText.value;
+  exampleTextDebounced.value;
 
   return pipe(
     grammarParser.value,
     E.map(flow(
-      (parser) => parser.parse(exampleText.value),
+      (parser) => parser.parse(exampleTextDebounced.value),
       lrTreeToSyntaxTree,
     ))
   )
