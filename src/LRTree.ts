@@ -15,6 +15,9 @@ export type SyntaxTreeEntry = {
 }
 
 
+const makeTree = (tree: InterimTree): Tr.Tree<SyntaxTreeEntry> => 
+  Tr.make(tree.entry, tree.children.map(makeTree))
+
 export const lrTreeToSyntaxTree = (tree: LRTree) => {
   const stack: InterimTree[] = []
 
@@ -32,9 +35,6 @@ export const lrTreeToSyntaxTree = (tree: LRTree) => {
       }
     }
   })
-
-  const makeTree = (tree: InterimTree): Tr.Tree<SyntaxTreeEntry> => 
-    Tr.make(tree.entry, tree.children.map(makeTree))
 
   return makeTree(stack[0])
 }
