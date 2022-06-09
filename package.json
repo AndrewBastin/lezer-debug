@@ -8,30 +8,30 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@codemirror/basic-setup": "^0.20.0",
-    "@codemirror/commands": "^0.20.0",
-    "@codemirror/lang-lezer": "^0.20.0",
-    "@codemirror/language": "^0.20.0",
-    "@codemirror/state": "^0.20.0",
-    "@codemirror/text": "^0.19.6",
-    "@codemirror/theme-one-dark": "^0.20.0",
-    "@codemirror/view": "^0.20.4",
-    "@lezer/common": "^0.16.0",
-    "@lezer/generator": "^0.16.0",
-    "@lezer/highlight": "^0.16.0",
-    "@vueuse/core": "^8.4.2",
+    "@codemirror/commands": "^6.0.0",
+    "@codemirror/lang-json": "^6.0.0",
+    "@codemirror/lang-lezer": "^6.0.0",
+    "@codemirror/language": "^6.0.0",
+    "@codemirror/state": "^6.0.0",
+    "@codemirror/theme-one-dark": "^6.0.0",
+    "@codemirror/view": "^6.0.0",
+    "@lezer/common": "^1.0.0",
+    "@lezer/generator": "^1.0.0",
+    "@lezer/highlight": "^1.0.0",
+    "@vueuse/core": "^8.6.0",
+    "codemirror": "^6.0.0",
     "fp-ts": "^2.12.1",
     "uuid": "^8.3.2",
-    "vue": "^3.2.25"
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4",
-    "@unocss/preset-attributify": "^0.32.13",
-    "@unocss/preset-wind": "^0.32.13",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "typescript": "^4.5.4",
-    "unocss": "^0.32.13",
-    "vite": "^2.9.7",
-    "vue-tsc": "^0.34.7"
+    "@unocss/preset-attributify": "^0.38.1",
+    "@unocss/preset-wind": "^0.38.1",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "typescript": "^4.7.3",
+    "unocss": "^0.38.1",
+    "vite": "^2.9.10",
+    "vue-tsc": "^0.37.3"
   }
 }
